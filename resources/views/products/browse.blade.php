@@ -7,7 +7,9 @@
             @if($products)
             <div class="column is-12">
                 <button class="button is-primary is-inverted">
-                    <a href="{{route('product.new')}}"><b>Add New Product</b></a>  
+                    <a href="{{route('product.new')}}" style="text-decoration: none;">
+                        <b>Add New Product</b>
+                    </a>  
                 </button>
             </div>  
             <div class="columns">
@@ -22,7 +24,9 @@
                                 </figure>
                             </div>
                             <div class="card-content">
-                                <h5 class="card-header-title is-centered">{{$product['name']}}</h5>
+                                <h5 class="card-header-title is-centered" style="
+                                white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+                                ">{{$product['name']}}</h5>
                             </div>  
                         </div>  
                     </div>
@@ -31,7 +35,7 @@
                 <div class="column is-3 border">
                 @foreach($tags as $tag)
                     <span class="tag is-info is-light is-medium" style="margin: 1% 0 1% 0;">
-                        <a href="?tag={{$tag}}">{{$tag}}</a>
+                        <a href="?tag={{$tag}}" style="text-decoration: none;">{{$tag}}</a>
                     </span>
                 @endforeach  
                 </div>  
