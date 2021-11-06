@@ -3,32 +3,28 @@
 @section('title', '| Detail')
 
 @section('content')
-    <div class="container">
+    <div class="container animate__animated animate__fadeIn">
         <div class="columns">
             <div class="column is-12">
                 <div class="column is-12">
-                    <button class="button is-primary">
+                    <a class="button is-primary hvr-backward" href="{{route('product.all')}}">
                         <span class="icon">
                             <i class="fi-xnslxl-chevron-solid"></i>
                         </span>
-                        <a href="{{route('product.all')}}">
-                            <b style="color: white;">Back</b>
-                        </a>
-                    </button>
-                    <button class="button is-danger">
+                        <b style="color: white;">Back</b>
+                    </a>
+                    <a class="button is-danger hvr-buzz" href="{{route('product.all')}}">
                         <span class="icon">
                             <i class="fi-xnsuxl-trash-bin"></i>
                         </span>
-                        <a href="{{route('product.all')}}">
-                            <b style="color: white;">Delete</b>
-                        </a>
-                    </button>
+                        <b style="color: white;">Delete</b>
+                    </a>
                 </div>
                 <div class="columns">
                     <div class="column is-4">
                         <div class="container box">
                             <figure class="image is-4by5 is-480x600">
-                            <img src="https://bulma.io/images/placeholders/480x600.png">
+                            <img src="{{$product['image']}}">
                             </figure>
                         </div>
                     </div>
@@ -39,12 +35,14 @@
                             </div>
                             <section class="">
                                 <table class="table is-striped">
-                                    @for($i = 0; $i < 10; $i++)
+                                    @foreach($product as $key => $value)
+                                    @if ($key != "image")
                                     <tr>
-                                        <td width="30%">Key {{ $i }} : </td>
-                                        <td>Value</td>
+                                        <td width="30%">{{ ucwords(str_replace('_', ' ', $key)) }}</td>
+                                        <td>: {{ $value }}</td>
                                     </tr>
-                                    @endfor
+                                    @endif
+                                    @endforeach
                                 </table>
                             </section>
                         </div>
