@@ -3,7 +3,7 @@
 @section('title', '| Create')
 
 @section('content')
-<div class="container">
+<div class="container animate__animated animate__fadeIn">
     <div class="columns justify-content-center">
         <div class="column">
             <div class="card">

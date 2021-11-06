@@ -8,6 +8,8 @@
     <link rel="icon" href="/images/fi-xnsuxl-shopify.svg">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="{{ URL::asset('/css/hover-min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
     <script defer src="https://friconix.com/cdn/friconix-0.2213.js"> </script>
@@ -45,7 +47,7 @@
     <div class="container">
         <div class="columns">    
             <div class="column">
-                <h1 class="is-size-1-desktop has-text-centered">
+                <h1 class="is-size-1-desktop has-text-centered animate__animated animate__fadeInDown">
                     ShopInAja
                     <span class="icon has-text-danger">
                         <i class="fi-xnsuxm-shopify"></i>

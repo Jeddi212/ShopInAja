@@ -17,9 +17,13 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    public function detailProduct()
+    public function detailProduct(Request $id)
     {  
-        return view('products.detail');
+
+        $product = Redis::hgetall('product:'.$id['id']);
+        
+        return view('products.detail')->with(['product' => $product]);
+
     }
       
     public function store(Request $request)  
