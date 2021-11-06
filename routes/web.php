@@ -21,3 +21,4 @@ Route::get('/', function () {
 Route::get('/products/create', 'ProductController@create')-> name('product.new');  
 Route::post('/products/create', 'ProductController@store')-> name('product.store');  
 Route::get('/products/all', 'ProductController@viewProducts')-> name('product.all');
+Route::get('/products/detail', 'ProductController@detailProduct')-> name('product.details');
