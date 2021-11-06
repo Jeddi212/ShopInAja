@@ -7,7 +7,7 @@
             @if($products)
             <div class="column is-12">
                 <button class="button is-primary is-inverted">
-                    <a href="{{route('product.new')}}" style="text-decoration: none;">
+                    <a href="{{route('product.new')}}">
                         <b>Add New Product</b>
                     </a>  
                 </button>
@@ -35,7 +35,7 @@
                 <div class="column is-3 border">
                 @foreach($tags as $tag)
                     <span class="tag is-info is-light is-medium" style="margin: 1% 0 1% 0;">
-                        <a href="?tag={{$tag}}" style="text-decoration: none;">{{$tag}}</a>
+                        <a href="?tag={{$tag}}">{{$tag}}</a>
                     </span>
                 @endforeach  
                 </div>  
