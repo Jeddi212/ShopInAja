@@ -26,8 +26,8 @@
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(0);
             //cell1.innerHTML = rows+'<input type="hidden" name="id[]" value="'+rows+'">';
-            cell1.innerHTML = '<input type="text" class= "input" name="keys[]" required placeholder="Keys '+rows+'">';
-            cell2.innerHTML = '<input type="text" class= "input" name="values[]" required placeholder="Values '+rows+'">';
+            cell1.innerHTML = '<input type="text" class= "input" name="values[]" required placeholder="Values '+rows+'">';
+            cell2.innerHTML = '<input type="text" class= "input" name="keys[]" required placeholder="Keys '+rows+'">';
         }
 
         function RemoveRow(){

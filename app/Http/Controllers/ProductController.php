@@ -32,7 +32,7 @@ class ProductController extends Controller
         $data+=array('price' => $request->get('price'));
         $i=0;
         foreach($keys as $key) {
-            $data+=array($keys[0] => $values[0]);
+            $data+=array($keys[$i] => $values[$i]);
             $i++;
         }
     
@@ -55,6 +55,11 @@ class ProductController extends Controller
         $tags = Redis::sMembers('tags');  
         
         return view('products.browse')->with(['products' => $products, 'tags' => $tags]);
+    }
+
+    public function delete($key)
+    {
+
     }
     
     /*
