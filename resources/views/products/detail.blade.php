@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Detail')
+@section('title', 'Detail |')
 
 @section('content')
     <div class="container animate__animated animate__fadeIn">
@@ -36,12 +36,12 @@
                     <div class="column is-8">
                         <div class="container box">
                             <div class="heading">
-                                <h1 class="title">Nama Barang</h1>
+                                <h1 class="title">{{$product['name']}}</h1>
                             </div>
                             <section class="">
                                 <table class="table is-striped">
                                     @foreach($product as $key => $value)
-                                    @if ($key != "image")
+                                    @if ($key != 'image' && $key != 'name' && $key != 'product_id')
                                     <tr>
                                         <td width="30%">{{ ucwords(str_replace('_', ' ', $key)) }}</td>
                                         <td>: {{ $value }}</td>
