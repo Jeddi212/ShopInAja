@@ -14,7 +14,7 @@
                 <div class="column is-9">
                     @foreach($products as $product)
                     <div class="column is-4 is-pulled-left">
-                        <a target="_blank" href="{{ route('product.details', ['id' => $product['product_id']]) }}">
+                        <a href="{{ route('product.details', ['id' => $product['product_id']]) }}">
                         <div class="card hvr-glow">
                             <div class="card-image">
                                 <figure class="image is-4by5">

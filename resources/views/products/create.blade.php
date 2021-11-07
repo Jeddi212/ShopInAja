@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Create')
+@section('title', 'Create |')
 
 @section('content')
 <div class="container animate__animated animate__fadeIn">
