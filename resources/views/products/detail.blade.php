@@ -7,18 +7,23 @@
         <div class="columns">
             <div class="column is-12">
                 <div class="column is-12">
-                    <a class="button is-primary hvr-backward" href="{{route('product.all')}}">
-                        <span class="icon">
-                            <i class="fi-xnslxl-chevron-solid"></i>
-                        </span>
-                        <b style="color: white;">Back</b>
-                    </a>
-                    <a class="button is-danger hvr-buzz" href="{{route('product.all')}}">
-                        <span class="icon">
-                            <i class="fi-xnsuxl-trash-bin"></i>
-                        </span>
-                        <b style="color: white;">Delete</b>
-                    </a>
+                    <form action="{{ route('product.delete', $product['product_id'])}}" method="post">
+                    @method('delete')
+                    @csrf
+                        <input type="hidden" name="product_id" value=$product[product_id]>
+                        <a class="button is-primary hvr-backward" href="{{route('product.all')}}">
+                            <span class="icon">
+                                <i class="fi-xnslxl-chevron-solid"></i>
+                            </span>
+                            <b style="color: white;">Back</b>
+                        </a>
+                        <button type='submit' class="button is-danger hvr-buzz" onclick="return confirm('Are you sure?')">
+                            <span class="icon">
+                                <i class="fi-xnsuxl-trash-bin"></i>
+                            </span>
+                            <b style="color: white;">Delete</b>
+                        </button>
+                    </form>
                 </div>
                 <div class="columns">
                     <div class="column is-4">

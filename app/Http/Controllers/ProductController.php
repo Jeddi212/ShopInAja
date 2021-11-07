@@ -66,11 +66,19 @@ class ProductController extends Controller
         return view('products.browse')->with(['products' => $products, 'tags' => $tags]);
     }
 
-    public function delete($key)
+    public function delete($product_id)
     {
+        // remove 1 value in products (zset) => zrem
+        $is_success = Redis::zRem('products', $product_id);
+        //remove 1 value in tags (set) =>srem
+        $del_prod = 'product:'.$product_id;
+        $del_tag = 'product:'.$product_id.':tags';
+        Redis::del($del_prod);
+        Redis::del($del_tag);
 
+        return redirect()->route('product.all');
     }
-    
+
     /*
     * Increment product ID every time
     * a new product is added, and return
