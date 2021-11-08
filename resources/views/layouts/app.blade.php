@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopInAja @yield('title')</title>
+    <title>@yield('title') ShopInAja</title>
     <link rel="icon" href="/images/fi-xnsuxl-shopify.svg">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
@@ -64,7 +64,8 @@
 <footer class="footer">
   <div class="content has-text-centered">
     <p>
-      <strong>ShopInAja</strong> | by Alex + Timothy + Jeddi + Fedly | Big Data | NoSQL
+      <strong>ShopInAja</strong> | by Alex + Timothy + Jeddi + Fedly | Big Data | NoSQL<br>
+      Copyright &copy; ShopInAja 2021
     </p>
   </div>
 </footer>
