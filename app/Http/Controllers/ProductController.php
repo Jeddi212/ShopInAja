@@ -17,12 +17,31 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    public function detailProduct(Request $id)
+    public function detailProduct(Request $req)
     {  
 
-        $product = Redis::hgetall('product:'.$id['id']);
+        // Get product, terus redirect ke viewnya
+        $product = Redis::hgetall('product:'.$req['product_id']);
         
         return view('products.detail')->with(['product' => $product]);
+
+    }
+
+    public function editProduct(Request $req)
+    {  
+
+        // Get product, terus redirect ke viewnya
+        $product = Redis::hgetall('product:'.$req['product_id']);
+        
+        return view('products.edit')->with(['product' => $product]);
+
+    }
+
+    public function saveChanges(Request $req)
+    {  
+        
+        // Belom dikerjain logicnya
+        return redirect()->route('product.all');
 
     }
       
@@ -45,13 +64,13 @@ class ProductController extends Controller
             $i++;
         }
     
-        if(self::newProduct($productId, $data)){  
-            self::addToTags($tags);  
-            self::addToProductTags($productId, $tags);  
-            self::addProductToTags($productId, $tags);  
+        if(self::newProduct($productId, $data)){
+            self::addToTags($tags);
+            self::addToProductTags($productId, $tags);
+            self::addProductToTags($productId, $tags);
         }  
         
-        return redirect()->route('product.all');  
+        return redirect()->route('product.all');
     } 
 
     public function viewProducts(Request $request)  

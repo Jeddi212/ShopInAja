@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Create |')
+@section('title', 'Edit |')
 
 @section('content')
 <div class="container animate__animated animate__fadeIn">
     <div class="columns justify-content-center">
         <div class="column">
             <div class="card">
-                <div class="card-header-title">New Product</div>
+                <div class="card-header-title">Edit Product BELOM BERES, baru COPAS VIEW</div>
                     <div class="card-content">
-                        <form method="POST" action="{{ route('product.store') }}">
+                        <!-- <form method="POST" action="{{ route('product.store') }}">
                             {{ csrf_field() }}
                             <div class="field">
                                 <label for="date">Date</label>
@@ -51,7 +51,7 @@
                                 <span class="icon">
                                     <i class="fi-xwsuxl-plus-solid"></i>
                                 </span>
-                                <b>New Product</b>
+                                <b>Save Changes</b>
                             </button>
                             <a class="button is-warning hvr-buzz" href="{{ route('product.all') }}">
                                 <span class="icon">
@@ -59,7 +59,7 @@
                                 </span>
                                 <b style="color: black;">Discard</b>
                             </a>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </div>
