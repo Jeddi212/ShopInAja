@@ -22,8 +22,9 @@ class ProductController extends Controller
 
         // Get product, terus redirect ke viewnya
         $product = Redis::hgetall('product:'.$req['product_id']);
+        $tags = Redis::sMembers('product:'.$req['product_id'].':tags');
         
-        return view('products.detail')->with(['product' => $product]);
+        return view('products.detail')->with(['product' => $product, 'tags' => $tags]);
 
     }
 
@@ -32,8 +33,10 @@ class ProductController extends Controller
 
         // Get product, terus redirect ke viewnya
         $product = Redis::hgetall('product:'.$req['product_id']);
+        $getTags = Redis::sMembers('product:'.$req['product_id'].':tags');
+        $tags = implode(',', $getTags);
         
-        return view('products.edit')->with(['product' => $product]);
+        return view('products.edit')->with(['product' => $product, 'tags' => $tags]);
 
     }
 
@@ -51,6 +54,15 @@ class ProductController extends Controller
         $data+=array('date_from' => $request->get('date_from'));
         $data+=array('product_id' => $productId);
         $data+=array('price' => $request->get('price'));
+
+        // Untuk spesifikasi tambahan yang lama
+        foreach($request['productField'] as $key => $value) {
+            if($keys != 'name' && $keys != 'image' && $keys != 'date_from' && $keys != 'product_id' && $keys != 'price'){
+                $data+=array($key => $request->get($key));
+            }
+        }
+
+        // Untuk spesifikasi baru
         $i=0;
         if(!empty($keys)) {
             foreach($keys as $key) {
