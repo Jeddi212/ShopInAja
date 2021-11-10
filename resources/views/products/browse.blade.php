@@ -6,7 +6,15 @@
         <div class="column is-12">
             @if($products)
             <div class="column is-12">
-                <a class="button is-primary is-inverted hvr-bob" href="{{route('product.new')}}">
+                @if($status == "!home")
+                <a class="button is-primary hvr-backward" href="{{ route('product.all') }}">
+                    <span class="icon">
+                        <i class="fi-xnslxl-chevron-solid"></i>
+                    </span>
+                    <b style="color: white;">Back</b>
+                </a>
+                @endif
+                <a class="button is-primary is-inverted hvr-bob" href="{{ route('product.new') }}">
                     <b>Add New Product</b>
                 </a>
             </div>
@@ -14,11 +22,11 @@
                 <div class="column is-9">
                     @foreach($products as $product)
                     <div class="column is-4 is-pulled-left">
-                        <a href="{{ route('product.details', ['id' => $product['product_id']]) }}">
+                        <a href="{{ route('product.details', ['product_id' => $product['product_id']]) }}">
                         <div class="card hvr-glow">
                             <div class="card-image">
                                 <figure class="image is-4by5">
-                                        <img height="260" src="{{$product['image']}}" alt="Card image cap">
+                                        <img height="260" src="{{ $product['image'] }}" alt="Card image cap">
                                     </figure>
                                 </div>
                                 <div class="card-content">
@@ -33,8 +41,9 @@
                 </div>
                 <div class="column is-3">
                 @foreach($tags as $tag)
-                    <a class="tag is-info is-light is-medium hvr-push" href="?tag={{$tag}}" style="margin: 1% 0 1% 0; text-decoration: none;" >
-                        <small>{{$tag}}</small>
+                    <a class="tag is-info is-light is-medium hvr-push" href="?tag={{ $tag }}" 
+                        style="margin: 1% 0 1% 0; text-decoration: none;" >
+                        <small>{{ $tag }}</small>
                     </a>
                 @endforeach
                 </div>
@@ -42,9 +51,21 @@
             @else
             <div class="card">
                 <div class="card-header-title is-centered">Browse Products</div>
-                <div class="column is-8">
+                <div class="column is-12">
+                    <a class="button is-primary hvr-backward" href="{{ route('product.all') }}">
+                        <span class="icon">
+                            <i class="fi-xnslxl-chevron-solid"></i>
+                        </span>
+                        <b style="color: white;">Back</b>
+                    </a>
+                    <hr>
                     <div class="notification is-success" role="alert">
-                        Empty products! <a href="{{route('product.new')}}">Add Product</a>
+                        <p>Empty products! </p>
+                        <a href="{{ route('product.new') }}" class="hvr-forward" style="text-decoration: none;">
+                            <strong>
+                                Add Product?
+                            </strong>
+                        </a>
                     </div>
                 </div>
             </div>
