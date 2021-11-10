@@ -47,9 +47,9 @@
                                 <label for="date">Confirm Password</label>
                                 <br>
                                 <input class="input" type="password" id="p2" required name="Cpassword" onkeyup="cekPassword()" placeholder="Confirm Password">
-                                <br><br>
+                                <br>
+                                <span class="ajax" id="validPassword"></span><br>
                             </div>
-                            <span class="ajax" id="validPassword"></span><br>
 
                             <button type="submit" class="button is-primary" style="color: #030303">Submit</button>
                         </form>
