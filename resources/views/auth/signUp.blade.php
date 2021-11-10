@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Sign In |')
+@section('title', 'Sign Up |')
 
 @section('content')
 <div class="container animate__animated animate__fadeIn">

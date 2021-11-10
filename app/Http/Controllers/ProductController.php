@@ -17,11 +17,6 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    public function signIn()
-    {
-        return view('login.signUn');
-    }
-
     public function detailProduct(Request $id)
     {  
 
