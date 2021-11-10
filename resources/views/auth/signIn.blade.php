@@ -47,9 +47,9 @@
                                 <label for="date">Confirm Password</label>
                                 <br>
                                 <input class="input" type="password" id="p2" required name="Cpassword" onkeyup="cekPassword()" placeholder="Confirm Password">
-                                <br><br>
+                                <br>
+                                <span class="ajax" id="validPassword"></span><br>
                             </div>
-                            <span class="ajax" id="validPassword"></span><br>
 
                             <button type="submit" class="button is-primary" style="color: #030303">Submit</button>
                         </form>
@@ -82,28 +82,4 @@ function cekPassword(){
     xmlhttp.send();
 }
 </script>
-<?php
-    if(isset($_POST['signInSubmit'])){
-        $password1=$_POST['password'];
-        $password2=$_POST['Cpassword'];
-        $name = $_POST['name'];
-        $username = $_POST['username'];
-        $gender = $_POST['gender'];
-        $email = $_POST['email'];
-        if($password1!=$password2){
-            echo "<script>alert(\"Password not match\")</script>";
-        }else{
-            if($name != "" && $email != "" && $username!= ""){
-                $link=mysqli_connect("localhost","root","","tubes");
-                $password=md5($password1);
-                $sql = "INSERT INTO accountList(Name,Username,Gender,Email,Password,Type,Foto) VALUES ('$name','$username','$gender','$email','$password','member','')";
-                if(mysqli_query($link,$sql)){
-                    echo "<script>alert(\"Registered Successfully\")</script>";
-                }else{
-                    echo "ERROR: Could not able to execute $sql. ".mysqli_error($link)."<br>";
-                }
-            }
-        }
-    }
-?>
 @endsection
