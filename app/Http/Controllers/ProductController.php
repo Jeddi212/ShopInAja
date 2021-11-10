@@ -37,11 +37,35 @@ class ProductController extends Controller
 
     }
 
-    public function saveChanges(Request $req)
+    public function saveChanges(Request $request)
     {  
         
-        // Belom dikerjain logicnya
-        return redirect()->route('product.all');
+        $keys= $request->keys;
+        $values= $request->values;
+        $tags = explode(',',$request->get('tags'));
+        $productId = $request['product_id'];
+
+        $data = array();
+        $data+=array('name' => $request->get('product_name'));
+        $data+=array('image' => $request->get('product_image'));
+        $data+=array('date_from' => $request->get('date_from'));
+        $data+=array('product_id' => $productId);
+        $data+=array('price' => $request->get('price'));
+        $i=0;
+        if(!empty($keys)) {
+            foreach($keys as $key) {
+                $data+=array($keys[$i] => $values[$i]);
+                $i++;
+            }
+        }
+    
+        if(self::newProduct($productId, $data)){
+            self::addToTags($tags);
+            self::addToProductTags($productId, $tags);
+            self::addProductToTags($productId, $tags);
+        }  
+
+        return redirect()->route('product.details', ['product_id' => $productId]);
 
     }
       
@@ -59,9 +83,11 @@ class ProductController extends Controller
         $data+=array('product_id' => $productId);
         $data+=array('price' => $request->get('price'));
         $i=0;
-        foreach($keys as $key) {
-            $data+=array($keys[$i] => $values[$i]);
-            $i++;
+        if(!empty($keys)) {
+            foreach($keys as $key) {
+                $data+=array($keys[$i] => $values[$i]);
+                $i++;
+            }
         }
     
         if(self::newProduct($productId, $data)){
@@ -76,13 +102,15 @@ class ProductController extends Controller
     public function viewProducts(Request $request)  
     {  
         if($request->has('tag')){  
-            $products = self::getProductByTags(($request->get('tag')));  
+            $products = self::getProductByTags(($request->get('tag'))); 
+            $status = "!home";
         } else {  
             $products = self::getProducts();  
+            $status = "home";
         }  
         $tags = Redis::sMembers('tags');  
         
-        return view('products.browse')->with(['products' => $products, 'tags' => $tags]);
+        return view('products.browse')->with(['products' => $products, 'tags' => $tags, 'status' => $status]);
     }
 
     public function delete($product_id)

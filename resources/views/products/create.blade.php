@@ -34,7 +34,7 @@
                             </div>
                             <div class="field">
                                 <label for="price">Price</label>
-                                <input type="text" class="input" name="price" id="price" required placeholder="Price">
+                                <input type="number" min="0" class="input" name="price" id="price" required placeholder="Price">
                                 <br><br>
                             </div>
                             <div class="field">

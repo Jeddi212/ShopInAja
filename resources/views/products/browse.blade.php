@@ -6,6 +6,14 @@
         <div class="column is-12">
             @if($products)
             <div class="column is-12">
+                @if($status == "!home")
+                <a class="button is-primary hvr-backward" href="{{ route('product.all') }}">
+                    <span class="icon">
+                        <i class="fi-xnslxl-chevron-solid"></i>
+                    </span>
+                    <b style="color: white;">Back</b>
+                </a>
+                @endif
                 <a class="button is-primary is-inverted hvr-bob" href="{{ route('product.new') }}">
                     <b>Add New Product</b>
                 </a>
@@ -43,9 +51,21 @@
             @else
             <div class="card">
                 <div class="card-header-title is-centered">Browse Products</div>
-                <div class="column is-8">
+                <div class="column is-12">
+                    <a class="button is-primary hvr-backward" href="{{ route('product.all') }}">
+                        <span class="icon">
+                            <i class="fi-xnslxl-chevron-solid"></i>
+                        </span>
+                        <b style="color: white;">Back</b>
+                    </a>
+                    <hr>
                     <div class="notification is-success" role="alert">
-                        Empty products! <a href="{{ route('product.new') }}">Add Product</a>
+                        <p>Empty products! </p>
+                        <a href="{{ route('product.new') }}" class="hvr-forward" style="text-decoration: none;">
+                            <strong>
+                                Add Product?
+                            </strong>
+                        </a>
                     </div>
                 </div>
             </div>
