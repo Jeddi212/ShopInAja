@@ -65,6 +65,16 @@
                                     </tr>
                                     @endif
                                     @endforeach
+                                    <tr>
+                                        <td width="30%">Tags</td>
+                                        <td>: 
+                                            @foreach($tags as $tag)
+                                            <span class="tag">
+                                                {{ $tag }}
+                                            </span>
+                                            @endforeach
+                                        </td>
+                                    </tr>
                                 </table>
                             </section>
                         </div>

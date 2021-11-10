@@ -7,41 +7,41 @@
     <div class="columns justify-content-center">
         <div class="column">
             <div class="card">
-                <div class="card-header-title">Edit Product BELOM BERES, baru COPAS VIEW</div>
+                <div class="card-header-title">Edit Product</div>
                     <div class="card-content">
-                        <form method="POST" action="{{ route('product.save', ['product_id' => $product['product_id']]) }}">
+                        <form method="POST" action="{{ route('product.save', ['product_id' => $product['product_id'], 'productField' => $product, 'tagsBefore' => $tags]) }}">
                             {{ csrf_field() }}
                             <div class="field">
                                 <label for="date">Date</label>
                                 <br>
-                                <input type="text" class="input" name="date_from" id="date_from" value="<?php echo($product['date_from']); ?>" readonly>
+                                <input type="text" class="input" name="date_from" id="date_from" value="{{ $product['date_from'] }}" readonly>
                                 <br><br>
                             </div>
                             <div class="field">
                                 <label for="product_name">Product Name</label>
-                                <input type="text" class="input" name="product_name" id="product_name" value="<?php echo($product['name']); ?>" required placeholder="ex Headset Jack">
+                                <input type="text" class="input" name="product_name" id="product_name" value="{{ $product['name'] }}" required placeholder="ex Headset Jack">
                                 <br><br>
                             </div>
                             <div class="field">
                                 <label for="product_image">Image URL</label>
-                                <input type="text" class="input" name="product_image" id="product_image" value="<?php echo($product['image']); ?>" required placeholder="Image url">
+                                <input type="text" class="input" name="product_image" id="product_image" value="{{ $product['image'] }}" required placeholder="Image url">
                                 <br><br>
                             </div>
-                            <!-- <div class="field">
-                                <label for="tags">Tags</label>
-                                <input type="text" class="input" name="tags" id="tags" value="$product['tags']" required placeholder="Separate tags by comma">
-                                <br><br>
-                            </div> -->
                             <div class="field">
                                 <label for="price">Price</label>
-                                <input type="number" min="0" class="input" name="price" id="price" value="<?php echo($product['price']); ?>" required placeholder="Price">
+                                <input type="number" min="0" class="input" name="price" id="price" value="{{ $product['price'] }}" required placeholder="Price">
+                                <br><br>
+                            </div>
+                            <div class="field">
+                                <label for="tags">Tags</label>
+                                <input type="text" class="input" name="tags" id="tags" value="{{ $tags }}" required placeholder="Separate tags by comma">
                                 <br><br>
                             </div>
                             @foreach($product as $key => $value)
                             @if ($key != 'image' && $key != 'name' && $key != 'product_id' && $key != 'price' && $key != 'date_from')
                             <div class="field">
-                                <label for='$key'>{{ $key }}</label>
-                                <input type="text" class="input" name="price" id="price" value="<?php echo($value); ?>" required placeholder="Price">
+                                <label for='{{ $key }}'>{{ $key }}</label>
+                                <input type="text" class="input" name="{{ $key }}" id="{{ $key }}" value="{{ $value }}" required placeholder="{{ $key }}">
                                 <br><br>
                             </div>
                             @endif
