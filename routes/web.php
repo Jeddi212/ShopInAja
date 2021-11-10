@@ -23,3 +23,5 @@ Route::post('/products/create', 'ProductController@store')-> name('product.store
 Route::get('/products/all', 'ProductController@viewProducts')-> name('product.all');
 Route::get('/products/detail', 'ProductController@detailProduct')-> name('product.details');
 Route::delete('/products/{product_id}', 'ProductController@delete')-> name('product.delete');
+Route::get('signin', 'AuthController@signIn')-> name('auth.signin');
+Route::get('ajax/{cek}', 'AuthController@ajaxPassword');
