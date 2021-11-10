@@ -25,3 +25,5 @@ Route::get('/products/detail/{product_id}', 'ProductController@detailProduct')->
 Route::get('/products/edit/{product_id}', 'ProductController@editProduct')-> name('product.edit');
 Route::post('/products/edit/save/{product_id}', 'ProductController@saveChanges')-> name('product.save');
 Route::delete('/products/{product_id}', 'ProductController@delete')-> name('product.delete');
+Route::get('signup', 'AuthController@signUp')-> name('auth.signUp');
+Route::get('ajax/{cek}', 'AuthController@ajaxPassword');
