@@ -51,7 +51,18 @@
                                 <span class="ajax" id="validPassword"></span><br>
                             </div>
 
-                            <button type="submit" class="button is-primary" style="color: #030303">Submit</button>
+                            <button type="submit" class="button is-primary hvr-glow" style="color: #030303">
+                                <span class="icon">
+                                    <i class="fi-xwsuxl-plus-solid"></i>
+                                </span>
+                                <b>Submit</b>
+                            </button>
+                            <a class="button is-warning hvr-buzz" href="{{ route('product.all') }}">
+                                <span class="icon">
+                                    <i class="fi-xnsuxl-times-solid"></i>
+                                </span>
+                                <b style="color: black;">Discard</b>
+                            </a>
                         </form>
                     </div>
                 </div>
