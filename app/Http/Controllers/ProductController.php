@@ -55,7 +55,7 @@ class ProductController extends Controller
         $data+=array('product_id' => $productId);
         $data+=array('price' => $request->get('price'));
 
-        // Untuk spesifikasi tambahan yang lama
+        // Untuk spesifikasi tambahan, namun yang dahulu kala
         foreach($request['productField'] as $key => $value) {
             if($keys != 'name' && $keys != 'image' && $keys != 'date_from' && $keys != 'product_id' && $keys != 'price'){
                 $data+=array($key => $request->get($key));
@@ -70,11 +70,15 @@ class ProductController extends Controller
                 $i++;
             }
         }
+        
+        // Ambil tag yang baru dan unik
+        $tagsBefore = explode(',',$request['tagsBefore']);
+        $newTags = array_diff($tags, $tagsBefore);
     
         if(self::newProduct($productId, $data)){
-            self::addToTags($tags);
-            self::addToProductTags($productId, $tags);
-            self::addProductToTags($productId, $tags);
+            self::addToTags($newTags);
+            self::addToProductTags($productId, $newTags);
+            self::addProductToTags($productId, $newTags);
         }  
 
         return redirect()->route('product.details', ['product_id' => $productId]);

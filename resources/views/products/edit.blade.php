@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header-title">Edit Product</div>
                     <div class="card-content">
-                        <form method="POST" action="{{ route('product.save', ['product_id' => $product['product_id'], 'productField' => $product]) }}">
+                        <form method="POST" action="{{ route('product.save', ['product_id' => $product['product_id'], 'productField' => $product, 'tagsBefore' => $tags]) }}">
                             {{ csrf_field() }}
                             <div class="field">
                                 <label for="date">Date</label>
