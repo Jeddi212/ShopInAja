@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\Route;
 // index
 Route::get('/', function () {
     return view('index');
-});
-
+})-> name('index');
 Route::get('/products/create', 'ProductController@create')-> name('product.new');  
 Route::post('/products/create', 'ProductController@store')-> name('product.store');  
 Route::get('/products/all', 'ProductController@viewProducts')-> name('product.all');
@@ -26,4 +25,6 @@ Route::get('/products/edit/{product_id}', 'ProductController@editProduct')-> nam
 Route::post('/products/edit/save/{product_id}', 'ProductController@saveChanges')-> name('product.save');
 Route::delete('/products/{product_id}', 'ProductController@delete')-> name('product.delete');
 Route::get('signup', 'AuthController@signUp')-> name('auth.signUp');
-Route::get('ajax/{cek}', 'AuthController@ajaxPassword');
+Route::get('ajaxPassword/{cek}', 'AuthController@ajaxPassword');
+Route::get('ajaxUsername/{cek}', 'AuthController@ajaxUsername');
+Route::post('auth/signup', 'AuthController@register')-> name('auth.register');
