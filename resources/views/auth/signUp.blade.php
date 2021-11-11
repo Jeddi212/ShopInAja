@@ -9,8 +9,8 @@
             <div class="card">
                 <div class="card-header-title">Identity</div>
                     <div class="card-content"> 
-                        <form name="register" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
-
+                        <form name="register" method="post" action="{{ route('auth.register') }}" enctype="multipart/form-data">
+                            @csrf
                             <div class="field">
                                 <label for="date">Name</label>
                                 <br>
@@ -21,7 +21,8 @@
                                 <label for="date">Username</label>
                                 <br>
                                 <input class="input" type="text" name="username" onkeyup="cekUsername(this.value)" required placeholder="Username">
-                                <br><br>
+                                <br>
+                                <span class="ajax" id="usedUsername"></span><br>
                             </div>
                             <div class="field">
                                 <label for="date">Gender</label>
@@ -40,7 +41,7 @@
                             <div class="field">
                                 <label for="date">Password</label>
                                 <br>
-                                <input class="input" type="password" required name="password" id="p1" placeholder="Password">
+                                <input class="input" type="password" required name="password" onkeyup="cekPassword()" id="p1" placeholder="Password">
                                 <br><br>
                             </div>
                             <div class="field">
@@ -51,13 +52,13 @@
                                 <span class="ajax" id="validPassword"></span><br>
                             </div>
 
-                            <button type="submit" class="button is-primary hvr-glow" style="color: #030303">
+                            <button type="submit" class="button is-primary hvr-glow" style="color: #030303" id="submitBtn" disabled onclick="return confirm('Please confirm registration')">
                                 <span class="icon">
                                     <i class="fi-xwsuxl-plus-solid"></i>
                                 </span>
                                 <b>Submit</b>
                             </button>
-                            <a class="button is-warning hvr-buzz" href="{{ route('product.all') }}">
+                            <a class="button is-warning hvr-buzz" href="{{ route('product.all') }}" onclick="return confirm('This will discard your data. Are you sure?')">
                                 <span class="icon">
                                     <i class="fi-xnsuxl-times-solid"></i>
                                 </span>
@@ -72,25 +73,63 @@
 </div>            
         
 <script>
-function cekPassword(){
-    var pass1 = document.getElementById("p1").value;
-    var pass2 = document.getElementById("p2").value;
-    if(pass2.length==0){
-        document.getElementById("validPassword").innerHTML="";
-        return;
-    }
-    if(window.XMLHttpRequest){
-        xmlhttp = new XMLHttpRequest();
-    }else{
-        xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange=function(){
-        if(xmlhttp.readyState == 4 && xmlhttp.status==200){
-            document.getElementById("validPassword").innerHTML = xmlhttp.responseText;
+    function cekPassword(){
+        var pass1 = document.getElementById("p1").value;
+        var pass2 = document.getElementById("p2").value;
+
+        var shortWarn = "Password must have at least 8 characters";
+        var notMatchWarn = "Password not match";
+        var match = "Password match";
+        var warn = document.getElementById('validPassword').innerText;
+
+        if(pass2.length==0){
+            document.getElementById("validPassword").innerHTML="";
+            document.getElementById("submitBtn").disabled = true;
+            return;
         }
+
+        if(window.XMLHttpRequest){
+            xmlhttp = new XMLHttpRequest();
+        }else{
+            xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function(){
+            if(xmlhttp.readyState == 4 && xmlhttp.status==200){
+                if(xmlhttp.responseText == match){
+                    document.getElementById("submitBtn").disabled = false;
+                }else if(xmlhttp.responseText == notMatchWarn ||xmlhttp.responseText == shortWarn){
+                    document.getElementById("submitBtn").disabled = true;
+                }
+                document.getElementById("validPassword").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","ajaxPassword/cekPassword.php?q="+pass2+"&r="+pass1,true);
+        xmlhttp.send();
     }
-    xmlhttp.open("GET","ajax/cekPassword.php?q="+pass2+"&r="+pass1,true);
-    xmlhttp.send();
-}
+    function cekUsername(str){
+        if(str.length==0){
+            document.getElementById("usedUsername").innerHTML="";
+            return;
+        }
+
+        var used = "Username has been used"
+        if(window.XMLHttpRequest){
+            xmlhttp = new XMLHttpRequest();
+        }else{
+            xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function(){
+            if(xmlhttp.readyState == 4 && xmlhttp.status==200){
+                if(xmlhttp.responseText == used){
+                    document.getElementById("submitBtn").disabled = true;
+                }else{
+                    document.getElementById("submitBtn").disabled = false;
+                }
+                document.getElementById("usedUsername").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","ajaxUsername/cekUsername.php?q="+str,true);
+        xmlhttp.send();
+    }
 </script>
 @endsection
