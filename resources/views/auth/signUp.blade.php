@@ -52,7 +52,7 @@
                                 <span class="ajax" id="validPassword"></span><br>
                             </div>
 
-                            <button type="submit" class="button is-primary hvr-glow" style="color: #030303" id="submitBtn" disabled onclick="return confirm('Please confirm registration')">
+                            <button type="submit" class="button is-primary hvr-glow" style="color: #030303" id="submitBtn" disabled onclick="return confirm('Please confirm your registration')">
                                 <span class="icon">
                                     <i class="fi-xwsuxl-plus-solid"></i>
                                 </span>
@@ -81,6 +81,7 @@
         var notMatchWarn = "Password not match";
         var match = "Password match";
         var warn = document.getElementById('validPassword').innerText;
+        var used = "Username has been used";
 
         if(pass2.length==0){
             document.getElementById("validPassword").innerHTML="";
@@ -100,6 +101,9 @@
                 }else if(xmlhttp.responseText == notMatchWarn ||xmlhttp.responseText == shortWarn){
                     document.getElementById("submitBtn").disabled = true;
                 }
+                if(document.getElementById("usedUsername").innerHTML==used){
+                    document.getElementById("submitBtn").disabled = true;
+                }
                 document.getElementById("validPassword").innerHTML = xmlhttp.responseText;
             }
         }
@@ -112,7 +116,7 @@
             return;
         }
 
-        var used = "Username has been used"
+        var used = "Username has been used";
         if(window.XMLHttpRequest){
             xmlhttp = new XMLHttpRequest();
         }else{
@@ -120,10 +124,10 @@
         }
         xmlhttp.onreadystatechange=function(){
             if(xmlhttp.readyState == 4 && xmlhttp.status==200){
-                if(xmlhttp.responseText == used){
-                    document.getElementById("submitBtn").disabled = true;
-                }else{
+                if(xmlhttp.responseText != used){
                     document.getElementById("submitBtn").disabled = false;
+                }else{
+                    document.getElementById("submitBtn").disabled = true;
                 }
                 document.getElementById("usedUsername").innerHTML = xmlhttp.responseText;
             }

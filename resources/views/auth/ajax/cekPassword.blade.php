@@ -1,7 +1,7 @@
 <?php
     $q = $_GET["q"];  
     $r = $_GET["r"];
-    if(strlen($r)>8){
+    if(strlen($r)>=8){
         if($q!=$r){
             echo "Password not match";
         }else{
