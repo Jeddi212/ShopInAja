@@ -41,7 +41,7 @@
                             <div class="field">
                                 <label for="date">Password</label>
                                 <br>
-                                <input class="input" type="password" required name="password" onkeyup="cekPassword()" id="p1" placeholder="Password">
+                                <input class="input" type="password" id="p1" required name="password" onkeyup="cekPassword()" placeholder="Password">
                                 <br><br>
                             </div>
                             <div class="field">
