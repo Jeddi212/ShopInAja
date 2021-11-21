@@ -28,3 +28,6 @@ Route::get('signup', 'AuthController@signUp')-> name('auth.signUp');
 Route::get('ajaxPassword/{cek}', 'AuthController@ajaxPassword');
 Route::get('ajaxUsername/{cek}', 'AuthController@ajaxUsername');
 Route::post('auth/signup', 'AuthController@register')-> name('auth.register');
+Route::get('/login', 'AuthController@logIn')-> name('auth.logIn')->middleware('guest');
+Route::post('auth/login', 'AuthController@loginAuthenticate')-> name('auth.loginAuthenticate');
+Route::post('/logout', 'AuthController@logout')-> name('auth.logout');
