@@ -15,7 +15,7 @@
     <body>
         <div class="container-fluid" class="">
             <h1 class='mt-2'>Welcome to ShopInAja</h1>
-            <a class="btn btn-primary" href="{{url('/products/all')}}" role="button">Login</a>
+            <a class="btn btn-primary" href="{{url('/login')}}" role="button">Login</a>
         </div>
 
         <!-- Optional JavaScript; choose one of the two! -->
