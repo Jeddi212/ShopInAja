@@ -17,6 +17,12 @@
                 <a class="button is-primary is-inverted hvr-bob" href="{{ route('product.new') }}">
                     <b>Add New Product</b>
                 </a>
+                <a class="button is-danger hvr-backward" href="{{ route('auth.logIn') }}">
+                    <span class="icon">
+                        <i class="fi-xnsdxl-sign-out-solid"></i>
+                    </span>
+                    <b style="color: white;">Logout</b>
+                </a>
             </div>
             <div class="columns">
                 <div class="column is-9">
