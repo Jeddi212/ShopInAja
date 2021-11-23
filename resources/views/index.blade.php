@@ -1,25 +1,33 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+@section('title', 'Hello |')
 
-        <title>Home</title>
-        <style>
-        </style>
-    </head>
-    <body>
-        <div class="container-fluid" class="">
-            <h1 class='mt-2'>Welcome to ShopInAja</h1>
-            <a class="btn btn-primary" href="{{url('/login')}}" role="button">Login</a>
-            <a class="btn btn-primary" href="{{url('/signup')}}" role="button">Register</a>
+@section('content')
+
+<div class="container animate__animated animate__fadeIn">
+    <div class="columns justify-content-center">
+        <div class="column">
+            <div class="card">
+                <div class="card-header-title"><h1>WELCOME GOOD PEOPLE</h1></div>
+                    <div class="card-content"> 
+                        <a class="button is-primary is-large hvr-glow" href="{{ url('/login') }}">
+                            <span class="icon">
+                                <i class="fi-xwsuxl-sign-in-solid"></i>
+                            </span>
+                            <b style="color: white;">Login</b>
+                        </a>
+                        <a class="button is-warning is-large hvr-glow" href="{{ url('/signup') }}">
+                            <span class="icon">
+                                <i class="fi-xnsuxl-user-plus-solid"></i>
+                            </span>
+                            <b style="color: white;">Register</b>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</div>            
+        
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-
-    </body>
-</html>
+@endsection
